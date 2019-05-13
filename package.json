@@ -1,0 +1,18 @@
+{
+  "name": "Dating-app-website",
+  "version": "1.0.0",
+  "description": "Fresh version",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OlafDs/Project-Tech/tree/master/be"
+  },
+  "author": "Olaf",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^4.10.1"
+  }
+}
