@@ -1,40 +1,39 @@
+const express = require('express');
+const bodyParser = require('body-parser')
+const path = require('path');
+const createError = require('http-errors');
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var app = express();
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const app = express();
+const port = 3000;
 
 
 // view engine setup
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
+
+//Body Parser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+//Set Static Path
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.length('/', function(req, res){
+  res.send('');
+});
+
+// If port 3000 is okay, show console.log
+app.listen(3000, function(){
+  console.log('Server start on Port 3000!')
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
