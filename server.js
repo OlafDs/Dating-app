@@ -1,19 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
-const createError = require('http-errors');
 
 const app = express();
-const port = 3000;
 
 
-// view engine setup
-app.set('view engine', 'ejs');  
-app.set('views', path.join(__dirname, 'views'));
+express()
+  .use(express.static('static'))
+  .use(bodyParser.urlencoded({extended: true}))
+  .set('view engine', 'ejs')
+  .set('views', 'views')
+  .use(notFound)
+  .listen(3000)
 
-//Body Parser Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
 
 //Set Static Path
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,16 +24,12 @@ app.get('/', function(req, res){
 });
 
 //Forms
-app.post('/', add)
-app.length('/add', form)
+//app.post('/', add)
+//app.length('/add', form)
 
 // If port 3000 is okay, show console.log
 app.listen(3000, function(){
   console.log('Server start on Port 3000!')
 });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
