@@ -1,0 +1,48 @@
+<% include partials/head.ejs %>
+   <body id="inlog">
+      <header>
+         <nav>
+            <img src="" alt="logo">
+            <ul>
+                    <li><a href="/home" title="home">Home</a></li>
+                    <li><a href="/explorel" title="Explore">Explore</a></li>
+                    <li><a href="/login">Log in</a></li>
+                    <li><a href="/register">Register</a></li>
+            </ul>
+         </nav>
+      </header>
+      <main>
+         <!--sectie/gedeelte van de pagina-->
+         <section>
+            <article>
+               <h1>Log hier in om naar sportieve singles te zoeken</h1>
+               <form action="home.ejs" method="get">
+                  <fieldset>
+                     <legend>Inloggen</legend>
+                     <label>
+                     E-mail<input type="email" name="email" required>
+                     </label>
+                     <label>
+                     Wachtwoord<input type="password" name="password" required>
+                     </label>
+                     <input type="submit" value="Inloggen">
+                     <a href="">wachtwoord vergeten</a>
+                  </fieldset>
+               </form>
+            </article>
+            <article>
+               <h2>Of meld je aan met</h2>
+               <ul>
+                  <li>Instagram</li>
+                  <li>Facebook</li>
+                  <li>Twitter</li>
+               </ul>
+               <a href="home.html">Log in</a>
+            </article>
+         </section>
+      </main>
+      <footer>
+         <p>© 2019 Online Sport Dating</p>
+      </footer>
+   </body>
+</html>

@@ -1,3 +1,17 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<% include partials/head.ejs %>
+<body>
+        <header>
+                <nav>
+                   <img src="" alt="logo">
+                   <ul>
+                        <li><a href="/home" title="home">Home</a></li>
+                        <li><a href="/explorel" title="Explore">Explore</a></li>
+                        <li><a href="/login">Log in</a></li>
+                        <li><a href="/register">Register</a></li>
+                   </ul>
+                </nav>
+             </header>
+<title>Not found - My movie website</title>
+<h1>Not found</h1>
+<p>Uh oh! We couldn’t find this page!</p>
+<% include partials/footer.ejs %>
