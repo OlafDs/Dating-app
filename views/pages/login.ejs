@@ -1,4 +1,4 @@
-<% include partials/head.ejs %>
+<% include ../partials/head.ejs %>
    <body id="inlog">
       <header>
          <nav>
@@ -16,11 +16,11 @@
          <section>
             <article>
                <h1>Log hier in om naar sportieve singles te zoeken</h1>
-               <form action="home.ejs" method="get">
+               <form action="/index" method="get">
                   <fieldset>
                      <legend>Inloggen</legend>
                      <label>
-                     E-mail<input type="email" name="email" required>
+                     E-mail<input type="name" name="first_name" required>
                      </label>
                      <label>
                      Wachtwoord<input type="password" name="password" required>
@@ -41,8 +41,5 @@
             </article>
          </section>
       </main>
-      <footer>
-         <p>© 2019 Online Sport Dating</p>
-      </footer>
-   </body>
-</html>
+      <% include ../partials/footer.ejs %>
+

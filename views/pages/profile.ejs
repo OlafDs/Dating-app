@@ -1,0 +1,70 @@
+<% include ../partials/head.ejs %>
+
+<body id="userprofile">
+    <!--Header begin-->
+    <header>
+
+    </header>
+    <!--Header end-->
+    <main>
+
+        <section>
+            <!-- <h1>Resultaten</h1> -->
+            <ul>
+                <li>
+                    <article>
+                        <p><a href="/edit"><img src="" alt="edit icon"></a></p>
+                        <img src="" alt="Profiel foto">
+
+                        <footer>
+                            <ul>
+                                <li>
+                                    <% users.forEach(function(user){ %>
+                                    <h1><%=user.first_name %></h1>
+                                    <% }) %>
+                                </li>
+                                <!-- <li>
+<button class="favbutton"> Favorieten button </button>
+                  <button class="downloadbutton"> Download button </button>
+                </li> -->
+                            </ul>
+                        </footer>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <section class="profile-info">
+            <article>
+                <p>
+                    <% users.forEach(function(user){ %>
+                    <b>Leeftijd:</b>
+                    <i><%=user.leeftijd %></i>
+                    <% }) %>
+                </p>
+                <p>
+                    <% users.forEach(function(user){ %>
+                    <b>Doet aan de sport:</b> <i><%=user.sport %></i>
+                    <% }) %>
+                </p>
+
+                <hr />
+            </article>
+            <article>
+                <h2>Over Tessa</h2>
+                <% users.forEach(function(user){ %>
+
+                <p><%=user.description %></p>
+                <% }) %>
+                <hr />
+            </article>
+
+        </section>
+        <section>
+            <% users.forEach(function(user){ %>
+            <i><%=user.first_name %><%=user.leeftijd %><%=user.sport %><%=user.description %> -
+                <a href="/user/delete/" class="deleteUser" data-id="<%= user._id %>"> Wis mijn account </a> </i>
+            <% }) %>
+        </section>
+
+    </main>
+    <% include ../partials/footer.ejs %>
