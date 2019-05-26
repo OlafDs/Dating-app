@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Set Static path
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'static')))
 
 app.use(function (req, res, next) {
   res.locals.errors = null
@@ -48,8 +48,7 @@ app.use(expressValidator({
 app.get("/", start)
 app.get("/index", home)
 app.get("/register", register)
-app.get("/login", inloggen)
-app.get("/explore", explore)
+app.get("/login", login)
 app.get("/profile", profile)
 app.get("/matches", matches)
 
@@ -101,15 +100,10 @@ app.delete('/users/delete', function (req, res) {
   });
 })
 
-function inloggen(req, res) {
-  res.render('pages/inloggen.ejs', {
-    title: "inloggen"
-  });
-}
 
 function login(req, res) {
-  res.render('pages/Login.ejs', {
-    title: "inloggen"
+  res.render('pages/login.ejs', {
+    title: "login"
   });
 }
 
@@ -118,10 +112,9 @@ function home(req, res) {
     title: "Home"
   });
 }
-
-function edit(req, res) {
-  res.render('pages/edit.ejs', {
-    title: "edit"
+function matches(req, res) {
+  res.render('pages/matches.ejs', {
+    title: "matches"
   });
 }
 
