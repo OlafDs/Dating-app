@@ -1,21 +1,22 @@
 <% include ../partials/head.ejs %>
-
-<body id="userprofile">
-    <!--Header begin-->
+<body id="profile">
     <header>
-
-    </header>
-    <!--Header end-->
+        <nav>
+           <img src="" alt="logo">
+           <ul>
+              <li><a href="/index">Home</a></li>
+              <li><a href="/matches">Matches</a></li>
+              <li><a href="/login">Log in</a></li>
+              <li><a href="/profile">Profiel</a></li>
+           </ul>
+        </nav>
+     </header>
     <main>
-
         <section>
-            <!-- <h1>Resultaten</h1> -->
             <ul>
                 <li>
                     <article>
-                        <p><a href="/edit"><img src="" alt="edit icon"></a></p>
-                        <img src="" alt="Profiel foto">
-
+                        <img src="" alt="Profielfoto">
                         <footer>
                             <ul>
                                 <li>
@@ -23,10 +24,6 @@
                                     <h1><%=user.first_name %></h1>
                                     <% }) %>
                                 </li>
-                                <!-- <li>
-<button class="favbutton"> Favorieten button </button>
-                  <button class="downloadbutton"> Download button </button>
-                </li> -->
                             </ul>
                         </footer>
                     </article>
@@ -50,21 +47,18 @@
                 <hr />
             </article>
             <article>
-                <h2>Over Tessa</h2>
+                <h2>Info</h2>
                 <% users.forEach(function(user){ %>
-
                 <p><%=user.description %></p>
                 <% }) %>
                 <hr />
             </article>
-
         </section>
         <section>
             <% users.forEach(function(user){ %>
             <i><%=user.first_name %><%=user.leeftijd %><%=user.sport %><%=user.description %> -
-                <a href="/user/delete/" class="deleteUser" data-id="<%= user._id %>"> Wis mijn account </a> </i>
+                <a href="/users/delete/" class="deleteUser" data-id="<%= user._id %>"> Wis mijn account </a> </i>
             <% }) %>
         </section>
-
     </main>
     <% include ../partials/footer.ejs %>

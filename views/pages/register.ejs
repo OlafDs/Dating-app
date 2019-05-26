@@ -1,38 +1,46 @@
-<% include partials/head.ejs %>
+<% include ../partials/head.ejs %>
+
 <body id="register">
-    <header>
-        <nav>
-           <img src="" alt="logo">
-           <ul>
-              <li><a href="/home" title="home">Home</a></li>
-              <li><a href="/explorel" title="Explore">Explore</a></li>
-              <li><a href="/login">Log in</a></li>
-              <li><a href="/register">Register</a></li>
-           </ul>
-        </nav>
-     </header>
-<main>
-  <h1>Add a new movie</h1>
-  <form action="/users/add" method="POST">
-    <label>Title <input name=title></label>
-    <label>Name</label>
-      <input type="text" name="first_name">
-      <br>
-      <label>Last Name</label>
-      <input type="text" name="Last_name">
-      <br>
-      <label>Leeftijd</label>
-      <input type="text" name="leeftijd">
-      <br>
-      <label>Sport</label>
-      <input type="text" name="sport">
-      <br>
-      <label>Email</label>
-      <input type="text" name="email">
-      <br>
-    <label> Description (long)</label>
-      <textarea name=description rows=5></textarea>
-    <input type="submit" value="Submit">
-  </form>
-</main>
-<% include ../partials/footer.ejs %>
+  <header>
+    <nav>
+      <img src="" alt="logo">
+      <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="/matches">Matches</a></li>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/profile">Profiel</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div id="login-box">
+
+      <h1>Maak je account aan!</h1>
+      <form action="/users/add" method="POST">
+        <div class="left">
+          <label>Voornaam</label>
+          <input type="text" name="first_name">
+          <br>
+          <label>Achternaam</label>
+          <input type="text" name="Last_name">
+          <br>
+          <label>Leeftijd</label>
+          <input type="text" name="leeftijd">
+          <br>
+          <input type="submit" value="Submit">
+        </div>
+        <div class="right">
+            <label>Sport</label>
+            <input type="text" name="sport">
+            <br>
+            <label>Email</label>
+            <input type="text" name="email">
+            <br>
+            <label>Over jezelf</label>
+            <textarea name=description rows=6></textarea>
+            <br>
+        </div>
+      </form>
+    </div>
+  </main>
+  <% include ../partials/footer.ejs %>

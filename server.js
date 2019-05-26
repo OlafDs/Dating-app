@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const port = 3000
 const expressValidator = require('express-validator');
-//var mongojs = require('mongojs')
-//var db = mongojs('datingapp', ['users'])
+var mongojs = require('mongojs')
+var db = mongojs('datingapp', ['users'])
 
 const app = express();
 
@@ -46,11 +46,13 @@ app.use(expressValidator({
 
 
 app.get("/", start)
+app.get("/login", login)
 app.get("/index", home)
 app.get("/register", register)
-app.get("/login", login)
 app.get("/profile", profile)
 app.get("/matches", matches)
+app.get("/chat", chat)
+app.get("/settings", settings)
 
 
 app.post('/', function (req, res) {
@@ -63,6 +65,12 @@ function start(req, res) {
   });
 }
 
+function start(req, res) {
+  res.render('pages/login.ejs', {
+    title: "login"
+  });
+}
+
 function register(req, res) {
   db.users.find(function (err, docs) {
   res.render('pages/register.ejs', {
@@ -71,6 +79,47 @@ function register(req, res) {
   });
 })
 }
+
+function start(req, res) {
+  res.render('pages/settings.ejs', {
+    title: "settings"
+  });
+}
+
+function home(req, res) {
+  res.render('pages/index.ejs', {
+    title: "home"
+  });
+}
+
+function start(req, res) {
+  res.render('pages/chat.ejs', {
+    title: "chat"
+  });
+}
+
+
+function matches(req, res) {
+  res.render('pages/matches.ejs', {
+    title: "matches"
+  });
+}
+
+function profile(req, res) {
+  db.users.find(function (err, docs) {
+    res.render('pages/profile.ejs', {
+      title: "profile",
+      users: docs
+    });
+  })
+}
+
+function login(req, res) {
+  res.render('pages/login.ejs', {
+    title: "login"
+  });
+}
+
 app.post('/users/add', function (req, res) {
 
   req.checkBody('first_name', 'Voornaam is verplicht').notEmpty;
@@ -81,18 +130,16 @@ app.post('/users/add', function (req, res) {
 
 
   console.log('Registeren is gelukt');
-  res.redirect("../userprofile");
+  res.redirect("../profile");
   db.users.insert(newUser, function (req, res) {
     if (err) {
       console.log(err);
     }
   });
 })
-app.delete('/users/delete', function (req, res) {
 
-
-  console.log('Registeren is gelukt');
-  res.redirect("../userprofile");
+app.delete('/users/delete/:id', function (req, res) {
+  res.redirect("../profile");
   db.users.remove(docs, function (reg, res) {
     if (err) {
       console.log(err);
@@ -100,40 +147,6 @@ app.delete('/users/delete', function (req, res) {
   });
 })
 
-
-function login(req, res) {
-  res.render('pages/login.ejs', {
-    title: "login"
-  });
-}
-
-function home(req, res) {
-  res.render('pages/index.ejs', {
-    title: "Home"
-  });
-}
-function matches(req, res) {
-  res.render('pages/matches.ejs', {
-    title: "matches"
-  });
-}
-
-function profile(req, res) {
-  res.render('pages/profile.ejs', {
-    title: "profile"
-  });
-}
-
-function userprofile(req, res) {
-  db.users.find(function (err, docs) {
-    console.log(docs);
-    res.render('pages/userprofile.ejs', {
-      title: "userprofile",
-      users: docs
-    });
-  })
-
-}
 
 app.use(function (req, res, next) {
   res.status(404).render('error');
