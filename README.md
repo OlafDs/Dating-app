@@ -1,4 +1,4 @@
-# Dating app
+# Dating app - Project Tech
 
 This is a dating app created for sporty singles that don't have time to meet new people
 
@@ -40,25 +40,14 @@ And to ensure that the master-branch is up-to-date, use the pull command
 git pull https://github.com/OlafDs/Dating-app.git master
 ```
 
-## Running the tests
+### Stylsheets
 
---
+The CSS of all the pages are in one CSS file. All the coding of each page are separated from each other in the CSS file, so you can have a clear view where you are and where you need to go if you want to change something.
 
-### Coding style tests
 
-Explain what these tests test and why
+## Author
 
-```
-Give an example
-```
-
-## Deployment
-
---
-
-## Contributing
-
---
+OlafDs - Tech 3
 
 ## License
 
