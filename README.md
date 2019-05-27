@@ -14,6 +14,8 @@ Things you need to have to install this project
 Have/create a Github account
 Install Git
 Code editor
+Install Express
+Install EJS
 ```
 
 ### Installing
