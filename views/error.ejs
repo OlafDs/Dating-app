@@ -1,17 +1,18 @@
-<% include partials/head.ejs %>
-<body>
-        <header>
-                <nav>
-                   <img src="" alt="logo">
-                   <ul>
-                        <li><a href="/home" title="home">Home</a></li>
-                        <li><a href="/explorel" title="Explore">Explore</a></li>
-                        <li><a href="/login">Log in</a></li>
-                        <li><a href="/register">Register</a></li>
-                   </ul>
-                </nav>
-             </header>
+<% include ../partials/head.ejs %>
+<body id="error">
+      <header>
+            <nav>
+               <img src="" alt="logo">
+               <ul>
+                  <li><a href="/index" title="home">Home</a></li>
+                  <li><a href="/matches" title="matches">Matches<span class="notification">+1</span></a></li>
+                  <li><a href="/login" title="login">Log in</a></li>
+                  <li><a href="/profile" title="profiel">Profiel</a></li>
+               </ul>
+            </nav>
+         </header>
 <title>Not found - My movie website</title>
 <h1>Not found</h1>
 <p>Uh oh! We couldn’t find this page!</p>
-<% include partials/footer.ejs %>
+</body>
+<% include ../partials/footer.ejs %>

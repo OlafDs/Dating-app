@@ -1,3 +1,4 @@
+/**Credits to StackOverflow - Back-end slides - Traversy Media and my classmates for helping me out */
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path');
@@ -51,8 +52,8 @@ app.get("/index", home)
 app.get("/register", register)
 app.get("/profile", profile)
 app.get("/matches", matches)
-app.get("/chat", chat)
-app.get("/settings", settings)
+//app.get("/chat", chat)
+//app.get("/settings", settings)
 
 
 app.post('/', function (req, res) {
@@ -80,23 +81,24 @@ function register(req, res) {
 })
 }
 
-function start(req, res) {
-  res.render('pages/settings.ejs', {
-    title: "settings"
-  });
-}
-
 function home(req, res) {
   res.render('pages/index.ejs', {
     title: "home"
   });
 }
-
-function start(req, res) {
+/*
+ function start(req, res) {
   res.render('pages/chat.ejs', {
     title: "chat"
   });
 }
+
+function start(req, res) {
+  res.render('pages/settings.ejs', {
+    title: "settings"
+  });
+}
+*/
 
 
 function matches(req, res) {

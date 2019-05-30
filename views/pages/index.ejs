@@ -1,52 +1,64 @@
 <% include ../partials/head.ejs %>
-
 <body id="index">
    <header>
       <nav>
          <img src="" alt="logo">
          <ul>
-            <li><a href="/index">Home</a></li>
-            <li><a href="/matches">Matches</a></li>
-            <li><a href="/login">Log in</a></li>
-            <li><a href="/profile">Profiel</a></li>
+            <li><a href="/index" title="home">Home</a></li>
+            <li><a href="/matches" title="matches">Matches<span class="notification">+1</span></a></li>
+            <li><a href="/login" title="login">Log in</a></li>
+            <li><a href="/profile" title="profiel">Profiel</a></li>
          </ul>
       </nav>
    </header>
    <main>
       <section>
-         <h1>De beste app voor sportieve singles</h1>
-      </section>
-      <!--sectie/gedeelte van de pagina-->
-      <h2>Begin met swipen en match met mensen</h2>
-      <section>
-         <article>
-            <h3></h3>
-            <button class="download" id="okDownload">Download</button>
-            <img src="images/Moe.png" alt="book Moe">
-            <p>
-               De buschauffeur port me wakker...
-            </p>
-            <a href="">Lees meer</a>
-         </article>
-         <article>
-            <h3>Johan</h3>
-            <button class="download" id="okDownload">Download</button>
-            <img src="images/johan.png" alt="book johan cruijf">
-            <p>
-               Ik stap bus 21 uit terwijl ik...
-
-            </p>
-            <a href="">Lees meer</a>
-         </article>
-         <article>
-            <h3>Regenboog</h3>
-            <button class="download" id="okDownload">Download</button>
-            <img src="images/Regenboog.png" alt="book Regenboog">
-            <p>
-               Bus 21. Ik stap uit. Het is een...
-            </p>
-            <a href="">Lees meerl</a>
-         </article>
+         <h1>Begin met swipen en match met mensen</h1>
+         <div class="gallery">
+            <div class="slide-wrapper">
+               <div class="slide">
+                  <ul>
+                     <img src="upload/woman.jpg" alt="Profiel foto">
+                     <li> <button class="dislike">Dislike</button>
+                     </li>
+                     <li> <button class="like" id="likeButton">Like</button>
+                     </li>
+                  </ul>
+               </div>
+               <div class="slide">
+                  <ul>
+                     <img src="upload/woman.jpg" alt="Profiel foto">
+                     <li> <button class="dislike">Dislike</button>
+                     </li>
+                     <li> <button class="like" id="likeButton">Like</button>
+                     </li>
+                  </ul>
+               </div>
+               <div class="slide">
+                  <ul>
+                     <img src="upload/woman.jpg" alt="Profiel foto">
+                     <li> <button class="dislike">Dislike</button>
+                     </li>
+                     <li> <button class="like" id="likeButton">Like</button>
+                     </li>
+                  </ul>
+               </div>
+               <div class="slide">
+                  <ul>
+                     <img src="upload/woman.jpg" alt="Profiel foto">
+                     <li> <button class="dislike">Dislike</button>
+                     </li>
+                     <li> <button class="like" id="likeButton">Like</button>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
       </section>
    </main>
-   <% include ../partials/footer.ejs %>
+   <footer>
+         <p>© 2019 Online Sport Dating</p>
+      </footer>
+	  <script src="/javascripts/notification.js"></script>
+   </body>
+</html>
