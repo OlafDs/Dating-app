@@ -1,14 +1,15 @@
 /**Credits to StackOverflow - Back-end slides - Traversy Media and my classmates for helping me out */
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const session = require('express-session');
 const path = require('path');
+const mongoose = require('mongoose');
 const mongojs = require('mongojs');
-const mongo = require('mongodb');
+const mongodb = require('mongodb').MongoClient;
 const db = mongojs('datingapp', ['users']);
 const port = 3000;
 
@@ -19,6 +20,10 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+//Connect to your chosen database
+mongoose.connect('mongodb://localhost/datingapp', {
+  useNewUrlParser: true
+});
 
 // Set Static path
 app.use(express.static(path.join(__dirname, 'static')))
@@ -67,11 +72,11 @@ function start(req, res) {
 
 function register(req, res) {
   db.users.find(function (docs) {
-  res.render("pages/register.ejs", {
-    title: "register",
-    users: docs
+    res.render("pages/register.ejs", {
+      title: "register",
+      users: docs
+    });
   });
-});
 }
 
 function home(req, res) {
@@ -91,7 +96,7 @@ function matches(req, res) {
 
 app.post('/users/add', function (req, res) {
   //  object destructering var newUser = { first_name, last_name, age, description. sport, email, password } = reg.body;
-  var newUser = { 
+  var newUser = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     age: req.body.age,
@@ -103,38 +108,47 @@ app.post('/users/add', function (req, res) {
   console.log('Registeren is gelukt');
   res.redirect("../profile");
   db.users.insert(newUser);
-}
-);
+});
 
-  app.get('/users/delete', function (req, res) {
-    db.users.remove( {});
-      console.log('Account is gewist');
-      res.redirect("../register");
+app.get('/users/delete', function (req, res) {
+  db.users.remove({});
+  console.log('Account is gewist');
+  res.redirect("../register");
+});
+
+app.get('/users/login', function (req, res) {
+
+  var email = req.body.email;
+  var password = req.body.password;
+
+  User.findOne({
+    email: email,
+    password: password
+  }, function (req, res) {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).send();
+
     }
-  );
+    if (!user) {
 
-  app.post('/users/login',urlencodedParser,function(req,res){
-    MongoClient.connect(url, function(err, db) {
-    db.collection('profile').findOne({ name: req.body.first_name}, function(err, user) {
-              if(user ===null){
-                res.end("Login invalid");
-             }else if (user.first_name === req.body.fisrt_name && user.password === req.body.password){
-             res.render('profile',{profileData:user});
-           } else {
-             console.log("Credentials wrong");
-             res.end("Login invalid");
-           }
-    });
-  });
- });
+      return res.status(404).send();
+    }
+
+    return res.status(200).send();
+  })
+
+});
+
 function login(req, res) {
   db.users.find(function (docs) {
-  res.render('pages/login.ejs', {
-    title: "login",
-    user: req.session.user,
-    users: docs
+    res.render('pages/login.ejs', {
+      title: "login",
+      user: req.session.user,
+      users: docs
+    })
   })
-})
 };
 
 
