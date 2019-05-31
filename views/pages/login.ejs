@@ -1,4 +1,8 @@
-<% include ../partials/head.ejs %>
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/head.ejs %>
+</head>
    <body id="inlog">
       <header>
          <nav>
@@ -16,7 +20,7 @@
          <section>
             <article>
                <h1>Log hier in om naar sportieve singles te zoeken</h1>
-               <form action="/index" method="get">
+               <form action="/users/login" method="POST">
                   <fieldset>
                      <legend>Inloggen</legend>
                      <label>

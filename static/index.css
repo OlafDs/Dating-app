@@ -1,4 +1,4 @@
-/** Some of this code are the same from my Project WEB website**/
+/** Some of this code are the same from my Project WEB websitecd **/
 * {
     font-family: Segoe UI;
     font-weight: normal;
@@ -173,18 +173,22 @@ nav a {
 
 #index .slide:nth-child(1) {
     background: #D93B65;
+    border: 1px solid #000;
   }
   
   #index .slide:nth-child(2) {
     background: #037E8C;
+    order: 1px solid #000;
   }
   
   #index .slide:nth-child(3) {
     background: #36BF66;
+    order: 1px solid #000;
   }
   
   #index .slide:nth-child(4) {
     background: #D9D055;
+    order: 1px solid #000;
   }
   
   @keyframes slide {
@@ -218,6 +222,7 @@ nav a {
 #matches main ul li {
     width: 50%;
     padding: 1em;
+    list-style-type: none;
 }
 
 
@@ -227,9 +232,8 @@ nav a {
     text-align: center;
     position: relative;
     background-size: cover;
-    border-radius: 0.5em;
+    border: 1px solid #000;
     width: 100%;
-    background-color: #77B8CA;
 }
 
 #matches main ul li article img {
@@ -280,24 +284,24 @@ nav a {
 }
 
 #matches main ul li article footer ul li button {
-    color: transparent;
-    position: relative;
+
     width: 1em;
     height: 1em;
     text-align: center;
-    background-position: center;
     margin: 0.1em auto;
     padding: 0.8em;
     transition: all 0.7s ease 0s;
     display: block;
-    background-color: transparent;
     box-shadow: none;
     border: none;
-    background-repeat: no-repeat;
-    outline: none;
-    background-size: cover;
-    cursor: pointer;
 }
+
+
+/******CSS voor de profiel agina********/
+#profile  main img {
+    width: 23em;
+}
+
 
 
 /******CSS voor de inlog pagina********/
@@ -482,7 +486,7 @@ nav a {
     position: relative;
     margin: 5% auto;
     width: 600px;
-    height: 400px;
+    height: 555px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -493,13 +497,13 @@ nav a {
     top: 0;
     left: 0;
     box-sizing: border-box;
-    padding: 40px;
+    padding: 55px;
     width: 300px;
     height: 400px;
 }
 
 #register h1 {
-    margin: 0 0 20px 0;
+    margin: 0 0 20px 55px ;
     font-weight: 300;
     font-size: 28px;
 }

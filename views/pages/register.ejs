@@ -1,5 +1,8 @@
-<% include ../partials/head.ejs %>
-
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/head.ejs %>
+</head>
 <body id="register">
   <header>
     <nav>
@@ -19,25 +22,28 @@
       <form action="/users/add" method="POST">
         <div class="left">
           <label>Voornaam</label>
-          <input type="text" name="first_name">
+          <input type="text" name="first_name" required>
           <br>
           <label>Achternaam</label>
-          <input type="text" name="Last_name">
+          <input type="text" name="last_name" required>
           <br>
           <label>Leeftijd</label>
-          <input type="text" name="leeftijd">
+          <input type="text" name="age" required>
           <br>
-          <input type="submit" value="Submit">
+          <label>Over jezelf</label>
+          <textarea name=description rows=6 required></textarea>
+          <br>
+          <button type="submit" value="submit">Register</button>
         </div>
         <div class="right">
             <label>Sport</label>
-            <input type="text" name="sport">
+            <input type="text" name="sport" required>
             <br>
             <label>Email</label>
-            <input type="text" name="email">
+            <input type="text" name="email" required>
             <br>
-            <label>Over jezelf</label>
-            <textarea name=description rows=6></textarea>
+            <label>Wachtwoord</label>
+            <input type="password" name="password" required>
             <br>
         </div>
       </form>

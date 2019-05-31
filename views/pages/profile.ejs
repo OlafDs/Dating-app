@@ -1,4 +1,8 @@
-<% include ../partials/head.ejs %>
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head.ejs %>
+</head>
 <body id="profile">
     <header>
         <nav>
@@ -16,13 +20,13 @@
             <ul>
                 <li>
                     <article>
-                        <img src="" alt="Profielfoto">
+                        <img src="upload/woman.jpg" alt="Profielfoto">
                         <footer>
                             <ul>
                                 <li>
                                     <% users.forEach(function(user){ %>
-                                    <h1><%=user.first_name %></h1>
-                                    <% }) %>
+                                        <h1><%=user.first_name %></h1>
+                                        <% }) %>
                                 </li>
                             </ul>
                         </footer>
@@ -55,10 +59,7 @@
             </article>
         </section>
         <section>
-            <% users.forEach(function(user){ %>
-            <i><%=user.first_name %><%=user.leeftijd %><%=user.sport %><%=user.description %> -
-                <a href="/users/delete/" class="deleteUser" data-id="<%= user._id %>"> Wis mijn account </a> </i>
-            <% }) %>
+                <a href="/users/delete"> Wis mijn account </a> </i>
         </section>
     </main>
     <% include ../partials/footer.ejs %>
