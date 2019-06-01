@@ -1,9 +1,10 @@
 /**Credits to StackOverflow - Back-end slides - Traversy Media and my classmates for helping me out */
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const router = express.Router();
 
 const session = require('express-session');
 const path = require('path');
@@ -11,7 +12,14 @@ const mongoose = require('mongoose');
 const mongojs = require('mongojs');
 const mongodb = require('mongodb').MongoClient;
 const db = mongojs('datingapp', ['users']);
-const port = 3000;
+const port = process.env.DB_PORT || 8000;
+
+const User = require('./routes/userlogin');
+
+process.env['DB_HOST'] = 'host';
+process.env['MONGO_DB'] = 'database';
+
+
 
 const app = express();
 
@@ -21,7 +29,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 //Connect to your chosen database
-mongoose.connect('mongodb://localhost/datingapp', {
+mongoose.connect('mongodb://host/database', {
   useNewUrlParser: true
 });
 
@@ -43,7 +51,7 @@ app.use(session({
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET
 }));
-app.listen(8000);
+
 
 app.get("/", start)
 app.get("/login", login)
@@ -52,6 +60,7 @@ app.get("/register", register)
 app.get("/profile", profile)
 app.get("/matches", matches)
 
+app.listen((process.env.DB_PORT || 8000));
 
 
 app.post('/', function (req, res) {
@@ -116,58 +125,58 @@ app.get('/users/delete', function (req, res) {
   res.redirect("../register");
 });
 
-app.get('/users/login', function (req, res) {
+app.post('/users/login', function (req, res) {
 
-  var email = req.body.email;
-  var password = req.body.password;
+      var email = req.body.email;
+      var password = req.body.password;
 
-  User.findOne({
-    email: email,
-    password: password
-  }, function (req, res) {
+      db.users.findOne({ email: email, password: password, function (err, user) {
 
-    if (err) {
-      console.log(err);
-      return res.status(500).send();
+          if (err) {
+            console.log(err)
+            return res.status(500).send();
+          }
 
-    }
-    if (!user) {
+          if (!user) {
+            console.log(err)
+            return res.status(404).send();
+          }
 
-      return res.status(404).send();
-    }
+          console.log('Ingelogd!');
+          return res.redirect("../matches");
 
-    return res.status(200).send();
-  })
-
-});
-
-function login(req, res) {
-  db.users.find(function (docs) {
-    res.render('pages/login.ejs', {
-      title: "login",
-      user: req.session.user,
-      users: docs
-    })
-  })
-};
-
-
-function profile(req, res) {
-  db.users.find(function (err, docs) {
-    console.log(docs);
-    res.render('pages/profile.ejs', {
-      title: "profile",
-      users: docs,
-      user: req.session.user
+        }
+      })
     });
-  });
-}
 
 
-app.use(function (req, res, next) {
-  res.status(404).render('error');
-});
+      function login(req, res) {
+        db.users.find(function (docs) {
+          res.render('pages/login.ejs', {
+            title: "login",
+            user: req.session.user,
+            users: docs
+          })
+        })
+      };
 
-app.listen(port, function () {
-  console.log(`Server started on port 3000 with no errors`);
-});
+
+      function profile(req, res) {
+        db.users.find(function (err, docs) {
+          console.log(docs);
+          res.render('pages/profile.ejs', {
+            title: "profile",
+            users: docs,
+            user: req.session.user
+          });
+        });
+      }
+
+
+      app.use(function (req, res, next) {
+        res.status(404).render('error');
+      });
+
+      app.listen(process.env.PORT, function () {
+        console.log(`Server started with no errors`);
+      });
