@@ -18,6 +18,17 @@ Install Express
 Install EJS
 ```
 
+Install these NPM Packages
+
+```
+Install Express
+Install EJS
+Install Nodemon
+Install
+```
+
+For deployment i used ```Heroku.``` But there are many more options you can choose from for deploying this app.
+
 ### Installing
 
 How to install this project:
