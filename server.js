@@ -2,6 +2,7 @@
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
 
 require('dotenv').config();
+const PORT = process.env.DB_PORT || 5000;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -16,7 +17,6 @@ const mongoose = require('mongoose');
 
 const db = mongojs(process.env.MONGO_DB);
 const host = process.env.HOST;
-const port = process.env.DB_PORT;
 const dbURL = process.env.DB_URL;
 
 const User = require('./utilities/userlogin');
@@ -76,7 +76,7 @@ app.get("/register", register);
 app.get("/logout", logout);
 
 //Gets the given port in the .env file
-app.listen((process.env.DB_PORT));
+app.listen((PORT));
 
 
 app.post('/', function (req, res) {
@@ -247,6 +247,6 @@ app.use(function (req, res, next) {
   res.status(404).render('error');
 });
 
-app.listen(process.env.DB_PORT, function () {
+app.listen(PORT, function () {
   console.log(`Server started with no errors`);
 });
