@@ -59,7 +59,7 @@ app.use(session({
 
 
 //https://medium.com/@nohkachi/local-authentication-with-express-4-x-and-passport-js-745eba47076d
-//Check foor mongoose connection
+//Check for mongoose connection
 mongoose.connect(dbURL);
 var dbcon = mongoose.connection;
 dbcon.on('error', function (err) {
@@ -75,6 +75,7 @@ app.get("/login", login),
 app.get("/register", register);
 app.get("/logout", logout);
 
+//Gets the given port in the .env file
 app.listen((process.env.DB_PORT));
 
 
@@ -84,8 +85,7 @@ app.post('/', function (req, res) {
 
 
 
-//----ADD USER ON REGISTER PAGE----//
-
+//----ADD USER ON REGISTER PAGE FUNCTION----//
 
 //https://www.youtube.com/watch?v=CrAU8xTHy4M&t=718s
 app.post('/users/add', function (req, res) {
@@ -105,7 +105,7 @@ app.post('/users/add', function (req, res) {
   db.users.insert(newUser);
 });
 
-//----DELETE USER ACCOUNT----//
+//----DELETE USER ACCOUNT FUNCTION----//
 
 app.get('/users/delete', function (req, res) {
   const id = req.session.user._id
@@ -122,7 +122,7 @@ app.get('/users/delete', function (req, res) {
   })
 })
 
-//----CHECK FOR USER LOGIN----//
+//----CHECK FOR USER LOGIN FUNCTION----//
 
 //https://www.youtube.com/watch?v=pzGQMwGmCnc&t=489s
 
@@ -202,7 +202,7 @@ function register(req, res) {
   });
 }
 
-//----INDEX/SWIPE PAGE----//
+//----INDEX/SWIPE PAGE - MATCH WITH PEOPLE----//
 app.get("/index", function (req, res) {
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
@@ -213,7 +213,7 @@ app.get("/index", function (req, res) {
   })
 });
 
-//----MATCHES PAGE----//
+//----MATCHES PAGE - SEE YOUR MATCHES----//
 
 app.get("/matches", function (req, res) {
   if (!req.session.user) {
