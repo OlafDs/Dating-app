@@ -2,7 +2,7 @@
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
 
 require('dotenv').config();
-const PORT = process.env.DB_PORT || 5000;
+const port = process.env.DB_PORT;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -76,7 +76,7 @@ app.get("/register", register);
 app.get("/logout", logout);
 
 //Gets the given port in the .env file
-app.listen((PORT));
+app.listen((port));
 
 
 app.post('/', function (req, res) {
@@ -247,6 +247,6 @@ app.use(function (req, res, next) {
   res.status(404).render('error');
 });
 
-app.listen(PORT, function () {
+app.listen(port, function () {
   console.log(`Server started with no errors`);
 });
