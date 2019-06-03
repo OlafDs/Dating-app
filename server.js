@@ -70,10 +70,10 @@ dbcon.once('connected', function () {
   return console.log('Successfully connected to the server');
 });
 
-app.get("/", login),
-app.get("/login", login),
-app.get("/register", register);
-app.get("/logout", logout);
+app.get('/', login),
+app.get('/login', login),
+app.get('/register', register);
+app.get('/logout', logout);
 
 //Gets the given port in the .env file
 app.listen((port));
@@ -101,7 +101,7 @@ app.post('/users/add', function (req, res) {
     password: req.body.password
   };
   console.log('Registeren is gelukt');
-  res.redirect("../profile");
+  res.redirect('../profile');
   db.users.insert(newUser);
 });
 
@@ -194,7 +194,7 @@ function login(req, res) {
 
 function register(req, res) {
   User.findOne(function (docs) {
-    res.render("pages/register.ejs", {
+    res.render('pages/register.ejs', {
       title: "register",
       users: docs,
       user: req.session.user
@@ -203,35 +203,35 @@ function register(req, res) {
 }
 
 //----INDEX/SWIPE PAGE - MATCH WITH PEOPLE----//
-app.get("/index", function (req, res) {
+app.get('/index', function (req, res) {
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   }
-  res.render("pages/index.ejs", {
-    title: "home",
+  res.render('pages/index.ejs', {
+    title: 'home',
     user: req.session.user
   })
 });
 
 //----MATCHES PAGE - SEE YOUR MATCHES----//
 
-app.get("/matches", function (req, res) {
+app.get('/matches', function (req, res) {
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   }
-  res.render("pages/matches.ejs", {
-    title: "matches",
+  res.render('pages/matches.ejs', {
+    title: 'matches',
     user: req.session.user
   });
 });
 
 //----PROFILE PAGE----//
 
-app.get("/profile", function (req, res) {
+app.get('/profile', function (req, res) {
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   } else {
-    res.render("pages/profile.ejs", {
+    res.render('pages/profile.ejs', {
       title: "profile",
       user: req.session.user
     })
