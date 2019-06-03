@@ -3,63 +3,38 @@
 <head>
     <% include ../partials/head.ejs %>
 </head>
+
 <body id="profile">
     <header>
-        <nav>
-           <img src="" alt="logo">
-           <ul>
-              <li><a href="/index">Home</a></li>
-              <li><a href="/matches">Matches</a></li>
-              <li><a href="/login">Log in</a></li>
-              <li><a href="/profile">Profiel</a></li>
-           </ul>
-        </nav>
-     </header>
+            <% include ../partials/nav.ejs %>
+    </header>
     <main>
         <section>
-            <ul>
-                <li>
-                    <article>
-                        <img src="upload/woman.jpg" alt="Profielfoto">
-                        <footer>
-                            <ul>
-                                <li>
-                                    <% users.forEach(function(user){ %>
-                                        <h1><%=user.first_name %></h1>
-                                        <% }) %>
-                                </li>
-                            </ul>
-                        </footer>
-                    </article>
-                </li>
-            </ul>
+            <article>
+                <img src="upload/woman.jpg" alt="Profielfoto">
+                <h2><%=user.first_name %></h2>
+            </article>
         </section>
         <section class="profile-info">
             <article>
-                <p>
-                    <% users.forEach(function(user){ %>
-                    <b>Leeftijd:</b>
-                    <i><%=user.leeftijd %></i>
-                    <% }) %>
-                </p>
-                <p>
-                    <% users.forEach(function(user){ %>
-                    <b>Doet aan de sport:</b> <i><%=user.sport %></i>
-                    <% }) %>
-                </p>
-
-                <hr />
+                <ul>
+                <li>
+                    <i>Leeftijd:</i>
+                    <b><%=user.age %></b>
+                </li>
+                <li>
+                    <i>Doet aan de sport:</i> 
+                    <b><%=user.sport %></b>
+                </li>
+            </ul>
             </article>
             <article>
                 <h2>Info</h2>
-                <% users.forEach(function(user){ %>
                 <p><%=user.description %></p>
-                <% }) %>
-                <hr />
             </article>
         </section>
         <section>
-                <a href="/users/delete"> Wis mijn account </a> </i>
+            <a href=/logout> Uitloggen </a> </i> <a href="/users/delete"> Wis mijn account </a> </i>
         </section>
     </main>
     <% include ../partials/footer.ejs %>

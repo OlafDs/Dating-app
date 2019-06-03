@@ -1,5 +1,6 @@
 /**Credits to StackOverflow - Back-end slides - Traversy Media and my classmates for helping me out */
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
+
 require('dotenv').config();
 
 const express = require('express');
@@ -8,30 +9,28 @@ const router = express.Router();
 
 const session = require('express-session');
 const path = require('path');
-const mongoose = require('mongoose');
+
+const mongodb = require('mongodb');
 const mongojs = require('mongojs');
-const mongodb = require('mongodb').MongoClient;
-const db = mongojs('datingapp', ['users']);
-const port = process.env.DB_PORT || 8000;
+const mongoose = require('mongoose');
 
-const User = require('./routes/userlogin');
+const db = mongojs(process.env.MONGO_DB);
+const host = process.env.HOST;
+const port = process.env.DB_PORT;
+const dbURL = process.env.DB_URL;
 
-process.env['DB_HOST'] = 'host';
-process.env['MONGO_DB'] = 'database';
-
-
+const User = require('./utilities/userlogin');
 
 const app = express();
+
 
 
 //view Engine
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-//Connect to your chosen database
-mongoose.connect('mongodb://host/database', {
-  useNewUrlParser: true
-});
+
+//------------------------MIDDELWARE-----------------------------//
 
 // Set Static path
 app.use(express.static(path.join(__dirname, 'static')))
@@ -49,63 +48,50 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   resave: false,
   saveUninitialized: true,
-  secret: process.env.SESSION_SECRET
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dbURL: process.env.DB_URL,
+  secret: process.env.SESSION_SECRET,
+  maxAge: 23 * 50 * 50,
+  secure: false
 }));
 
 
-app.get("/", start)
-app.get("/login", login)
-app.get("/index", home)
-app.get("/register", register)
-app.get("/profile", profile)
-app.get("/matches", matches)
 
-app.listen((process.env.DB_PORT || 8000));
+//https://medium.com/@nohkachi/local-authentication-with-express-4-x-and-passport-js-745eba47076d
+//Check foor mongoose connection
+mongoose.connect(dbURL);
+var dbcon = mongoose.connection;
+dbcon.on('error', function (err) {
+  console.error('There was a db connection error');
+  return console.error(err.message);
+});
+dbcon.once('connected', function () {
+  return console.log('Successfully connected to the server');
+});
+
+app.get("/", login),
+app.get("/login", login),
+app.get("/register", register);
+app.get("/logout", logout);
+
+app.listen((process.env.DB_PORT));
 
 
 app.post('/', function (req, res) {
   res.send('Got a POST request')
 });
 
-function start(req, res) {
-  res.render("pages/start.ejs", {
-    title: "start"
-  })
-};
-
-function start(req, res) {
-  res.render("pages/login.ejs", {
-    title: "login"
-  })
-};
-
-function register(req, res) {
-  db.users.find(function (docs) {
-    res.render("pages/register.ejs", {
-      title: "register",
-      users: docs
-    });
-  });
-}
-
-function home(req, res) {
-  res.render("pages/index.ejs", {
-    title: "home",
-    user: req.session.user
-  })
-};
-
-function matches(req, res) {
-  res.render("pages/matches.ejs", {
-    title: "matches",
-    user: req.session.user
-  })
-};
 
 
+//----ADD USER ON REGISTER PAGE----//
+
+
+//https://www.youtube.com/watch?v=CrAU8xTHy4M&t=718s
 app.post('/users/add', function (req, res) {
   //  object destructering var newUser = { first_name, last_name, age, description. sport, email, password } = reg.body;
-  var newUser = {
+  
+  const newUser = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     age: req.body.age,
@@ -119,64 +105,148 @@ app.post('/users/add', function (req, res) {
   db.users.insert(newUser);
 });
 
+//----DELETE USER ACCOUNT----//
+
 app.get('/users/delete', function (req, res) {
-  db.users.remove({});
-  console.log('Account is gewist');
-  res.redirect("../register");
-});
+  const id = req.session.user._id
+  User.findOneAndRemove({
+    _id: id
+  }, (err) => {
+    if (err) {
+      console.log(err)
+      res.status(500).send()
+    } else {
+      console.log('User removed')
+      return res.status(200).send(), res.redirect('/register');
+    }
+  })
+})
 
-app.post('/users/login', function (req, res) {
+//----CHECK FOR USER LOGIN----//
 
-      var email = req.body.email;
-      var password = req.body.password;
+//https://www.youtube.com/watch?v=pzGQMwGmCnc&t=489s
 
-      db.users.findOne({ email: email, password: password, function (err, user) {
 
-          if (err) {
-            console.log(err)
-            return res.status(500).send();
-          }
+app.post('/users/login', function (req, res, next) {
 
-          if (!user) {
-            console.log(err)
-            return res.status(404).send();
-          }
+  email = req.body.email;
+  password = req.body.password;
 
-          console.log('Ingelogd!');
-          return res.redirect("../matches");
+  let query = {
+    email: email,
+    password: password
+  };
 
+      User.findOne(query, function (err, user) {
+        if (err) {
+          console.log(err);
+          console.log('Error');
+          return res.redirect('/login');
         }
-      })
+        if (!user) {
+          console.log('Inloggen mislukt');
+          return res.redirect('/login');
+        }
+          req.session.user = user;
+          console.log('Inloggen gelukt');
+          return res.status(200).send, res.redirect('/index');
+      });
     });
 
+//--------------------PAGES--------------------------//
 
-      function login(req, res) {
-        db.users.find(function (docs) {
-          res.render('pages/login.ejs', {
-            title: "login",
-            user: req.session.user,
-            users: docs
-          })
-        })
-      };
+//----LOG THE USER OUT WHEN THE USER CLICKS ON 'logout' AND REDIRECT THE USER TO THE LOGIN PAGE----//
+
+function logout(req, res, next) {
+  req.session.destroy(function (err) {
+    if (err) {
+      next(err);
+    } else {
+      res.redirect('/login');
+      console.log('Je bent nu uitgelogd');
+    }
+  });
+}
+
+//----START WITH LOGIN PAGE----//
+
+function start(req, res) {
+  res.render("pages/login.ejs", {
+    title: "login",
+    users: docs,
+    user: req.session.user
+  })
+};
+
+//----LOGIN PAGE----//
+
+function login(req, res) {
+  User.findOne(function (docs) {
+    res.render('pages/login.ejs', {
+      title: "login",
+      users: docs,
+      user: req.session.user
+    });
+  });
+}
+
+//----REGISTER PAGE----//
+
+function register(req, res) {
+  User.findOne(function (docs) {
+    res.render("pages/register.ejs", {
+      title: "register",
+      users: docs,
+      user: req.session.user
+    });
+  });
+}
+
+//----INDEX/SWIPE PAGE----//
+app.get("/index", function (req, res) {
+  if (!req.session.user) {
+    return res.redirect('login'), res.status(401).send();
+  }
+  res.render("pages/index.ejs", {
+    title: "home",
+    user: req.session.user
+  })
+});
+
+//----MATCHES PAGE----//
+
+app.get("/matches", function (req, res) {
+  if (!req.session.user) {
+    return res.redirect('login'), res.status(401).send();
+  }
+  res.render("pages/matches.ejs", {
+    title: "matches",
+    user: req.session.user
+  });
+});
+
+//----PROFILE PAGE----//
+
+app.get("/profile", function (req, res) {
+  if (!req.session.user) {
+    return res.redirect('login'), res.status(401).send();
+  } else {
+    res.render("pages/profile.ejs", {
+      title: "profile",
+      user: req.session.user
+    })
+  }
+  console.log(process.env.SESSION_SECRET);
+  //return res.send(process.env.SESSION_SECRET); --- Gets Error [ERR_HTTP_HEADERS_SENT]:
+});
 
 
-      function profile(req, res) {
-        db.users.find(function (err, docs) {
-          console.log(docs);
-          res.render('pages/profile.ejs', {
-            title: "profile",
-            users: docs,
-            user: req.session.user
-          });
-        });
-      }
+//--------------------CHECK STATUS--------------------------//
 
+app.use(function (req, res, next) {
+  res.status(404).render('error');
+});
 
-      app.use(function (req, res, next) {
-        res.status(404).render('error');
-      });
-
-      app.listen(process.env.PORT, function () {
-        console.log(`Server started with no errors`);
-      });
+app.listen(process.env.DB_PORT, function () {
+  console.log(`Server started with no errors`);
+});
