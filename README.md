@@ -18,12 +18,20 @@ NPM v6.7.0
 A MongoDB installation (local, cloud or server)
 ```
 
+If you came across a problem installing mongoDB click [here](https://docs.mongodb.com/) and follow the steps to successfully install MongoDB
+
 For the code editor i used Visual Studio Code, but that's my preference.
 
-Install these NPM Packages
+### package.json
+
+Check the ```package.json``` file for the dependencies and the devDependencies. I'll show the devDenpendencies here: 
 
 ```
-Install Express
+  "devDependencies": {
+    "nodemon": "^1.19.1",
+	  "express": "^4.16.4"
+  }
+}
 ```
 
 For deployment i used ```Netlify.``` But there are many more options you can choose from for deploying this app.
@@ -56,6 +64,17 @@ And to ensure that the master-branch is up-to-date, use the pull command
 
 ```
 git pull https://github.com/OlafDs/Dating-app.git master
+```
+
+### Setting up .env
+
+
+```
+DB_HOST= # Database host (probably localhost)
+DB_PORT= # Port of database instance
+MONGO_DB= # The database you are using
+DB_URL= # 
+SESSION_SECRET= # Used for session secrets
 ```
 
 ### Stylsheets
