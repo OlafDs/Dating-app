@@ -11,9 +11,11 @@ These instructions will get you a copy of the project up and running on your loc
 Things you need to have to install this project
 
 ```
-Have/create a Github account
 Install Git
 Code editor
+Node v11.12.0
+NPM v6.7.0
+A MongoDB installation (local, cloud or server)
 ```
 
 For the code editor i used Visual Studio Code, but that's my preference.
@@ -39,6 +41,12 @@ Use the command git clone, then paste the link from your clipboard, or copy the 
 
 ```
 git clone https://github.com/OlafDs/Dating-app.git
+```
+
+Navigate into the repository and install the dependencies
+
+```
+npm install
 ```
 
 Change the directory to ~/Dating-app
