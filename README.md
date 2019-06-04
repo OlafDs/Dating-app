@@ -14,9 +14,20 @@ Things you need to have to install this project
 Have/create a Github account
 Install Git
 Code editor
+```
+
+For the code editor i used Visual Studio Code, but that's my preference.
+
+Install these NPM Packages
+
+```
 Install Express
 Install EJS
+Install Nodemon
+Install Mongojs/Mongoose
 ```
+
+For deployment i used ```Heroku.``` But there are many more options you can choose from for deploying this app.
 
 ### Installing
 
@@ -60,5 +71,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Google
 * Stack Overflow
 * Github
+* Youtube
 * My classmates that helped me
 
