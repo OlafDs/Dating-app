@@ -76,6 +76,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* Laurens Aarnoudse
 * Google
 * Stack Overflow
 * Github
