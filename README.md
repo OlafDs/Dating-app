@@ -72,13 +72,18 @@ git pull https://github.com/OlafDs/Dating-app.git master
 
 ### Setting up .env
 
-
 ```
 DB_HOST= # Database host (probably localhost)
 DB_PORT= # Port of database instance
 MONGO_DB= # The database you are using
 DB_URL= # 
 SESSION_SECRET= # Used for session secrets
+```
+
+## Other commands to use
+
+```
+npm start <server file> || nodemon <server file>
 ```
 
 ### Stylsheets
