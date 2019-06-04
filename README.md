@@ -24,9 +24,6 @@ Install these NPM Packages
 
 ```
 Install Express
-Install EJS
-Install Nodemon
-Install Mongojs/Mongoose
 ```
 
 For deployment i used ```Netlify.``` But there are many more options you can choose from for deploying this app.
