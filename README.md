@@ -27,7 +27,7 @@ Install Nodemon
 Install Mongojs/Mongoose
 ```
 
-For deployment i used ```Heroku.``` But there are many more options you can choose from for deploying this app.
+For deployment i used ```Netlify.``` But there are many more options you can choose from for deploying this app.
 
 ### Installing
 
