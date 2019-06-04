@@ -8,13 +8,34 @@ const Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
 
-//User Schema
+//User Schema - Gives mongoose information which data we want to store and remember in the database
 //Email validator - Checks if email is an legit email
-//https://www.npmjs.com/package/validator
+//Credits https://www.npmjs.com/package/validator
 
 const userSchema = new Schema({
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name:{
+    type: String,
+    required: true
+  },
+  age:{
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  sport: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
+    required: true,
     trim: true,
     unique: true,
     lowercase: true,
@@ -36,7 +57,7 @@ const userSchema = new Schema({
 userSchema.pre('save', async function (next) {
   try {
     //Generates salt
-    const salt = await becrypt.genSalt(12);
+    const salt = await bcrypt.genSalt(12);
     //Generates a password hash (salt + hash)
     const passwordHash = await bcrypt.hash(this.password, salt);
     next();

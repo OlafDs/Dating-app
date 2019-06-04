@@ -190,6 +190,11 @@ nav a {
     background: #D9D055;
     order: 1px solid #000;
   }
+  #index .slide ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+  
   
   @keyframes slide {
     20% {margin-left: 0px;}
@@ -219,12 +224,16 @@ nav a {
     width: 100%;
 }
 
+#matches main ul {
+    display: flex;
+    flex-direction: column;
+}
+
 #matches main ul li {
     width: 50%;
     padding: 1em;
     list-style-type: none;
 }
-
 
 
 #matches main ul li article {
@@ -233,7 +242,7 @@ nav a {
     position: relative;
     background-size: cover;
     border: 1px solid #000;
-    width: 100%;
+    width: 45.7%;
 }
 
 #matches main ul li article img {
@@ -285,9 +294,6 @@ nav a {
 
 #matches main ul li article footer ul li button {
 
-    width: 1em;
-    height: 1em;
-    text-align: center;
     margin: 0.1em auto;
     padding: 0.8em;
     transition: all 0.7s ease 0s;

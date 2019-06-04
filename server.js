@@ -2,7 +2,7 @@
 /*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
 
 require('dotenv').config();
-const port = process.env.DB_PORT;
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,7 +15,8 @@ const mongodb = require('mongodb');
 const mongojs = require('mongojs');
 const mongoose = require('mongoose');
 
-const db = mongojs(process.env.MONGO_DB);
+const port = process.env.DB_PORT;
+const db = mongojs(process.env.MONGO_DB, ['users']);
 const host = process.env.HOST;
 const dbURL = process.env.DB_URL;
 
@@ -59,15 +60,17 @@ app.use(session({
 
 
 //https://medium.com/@nohkachi/local-authentication-with-express-4-x-and-passport-js-745eba47076d
-//Check for mongoose connection
+//Check for mongoose connection (just to be extra sure there is really a connection with the database)
 mongoose.connect(dbURL);
 var dbcon = mongoose.connection;
+//If the connection to the database can't be made
 dbcon.on('error', function (err) {
   console.error('There was a db connection error');
   return console.error(err.message);
 });
+//If there is a connection with the database
 dbcon.once('connected', function () {
-  return console.log('Successfully connected to the server');
+  return console.log('Connected to the database');
 });
 
 app.get('/', login),
@@ -89,8 +92,8 @@ app.post('/', function (req, res) {
 
 //https://www.youtube.com/watch?v=CrAU8xTHy4M&t=718s
 app.post('/users/add', function (req, res) {
-  //  object destructering var newUser = { first_name, last_name, age, description. sport, email, password } = reg.body;
-  
+   
+ //  object destructuring  const newUser = { first_name, last_name, age, description, sport, email, password } + reg.body;
   const newUser = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -100,6 +103,7 @@ app.post('/users/add', function (req, res) {
     email: req.body.email,
     password: req.body.password
   };
+
   console.log('Registeren is gelukt');
   res.redirect('../profile');
   db.users.insert(newUser);
@@ -108,14 +112,18 @@ app.post('/users/add', function (req, res) {
 //----DELETE USER ACCOUNT FUNCTION----//
 
 app.get('/users/delete', function (req, res) {
+  //Gets the user id that is logged in
   const id = req.session.user._id
-  User.findOneAndRemove({
+  db.users.remove({
     _id: id
   }, (err) => {
+  //If user can't be deleted, show status 500 - Internal server error. Prevented from fulfilling the request
     if (err) {
       console.log(err)
       res.status(500).send()
-    } else {
+    }
+    // And if the user is deleted, redirect to the register page 
+    else {
       console.log('User removed')
       return res.status(200).send(), res.redirect('/register');
     }
@@ -124,7 +132,7 @@ app.get('/users/delete', function (req, res) {
 
 //----CHECK FOR USER LOGIN FUNCTION----//
 
-//https://www.youtube.com/watch?v=pzGQMwGmCnc&t=489s
+//Credits https://www.youtube.com/watch?v=pzGQMwGmCnc&t=489s
 
 
 app.post('/users/login', function (req, res, next) {
@@ -181,7 +189,7 @@ function start(req, res) {
 //----LOGIN PAGE----//
 
 function login(req, res) {
-  User.findOne(function (docs) {
+  db.users.findOne(function (docs) {
     res.render('pages/login.ejs', {
       title: "login",
       users: docs,
@@ -193,7 +201,7 @@ function login(req, res) {
 //----REGISTER PAGE----//
 
 function register(req, res) {
-  User.findOne(function (docs) {
+  db.users.findOne(function (docs) {
     res.render('pages/register.ejs', {
       title: "register",
       users: docs,
@@ -204,6 +212,7 @@ function register(req, res) {
 
 //----INDEX/SWIPE PAGE - MATCH WITH PEOPLE----//
 app.get('/index', function (req, res) {
+  //Checks If user is logged in or not. If user is not logged in, redirect the user to the login page
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   }
@@ -216,6 +225,7 @@ app.get('/index', function (req, res) {
 //----MATCHES PAGE - SEE YOUR MATCHES----//
 
 app.get('/matches', function (req, res) {
+   //Checks If user is logged in or not. If user is not logged in, redirect the user to the login page
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   }
@@ -248,5 +258,5 @@ app.use(function (req, res, next) {
 });
 
 app.listen(port, function () {
-  console.log(`Server started with no errors`);
+  console.log(`Successfully connected to the port`);
 });
