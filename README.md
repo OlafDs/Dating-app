@@ -24,7 +24,7 @@ For the code editor i used Visual Studio Code, but that's my preference.
 
 ### package.json
 
-Check the ```package.json``` file for the dependencies and the devDependencies. I'll show the devDenpendencies here: 
+Check the ```package.json``` file for the dependencies and the devDependencies for downloading NPM packages. I'll show the devDenpendencies here: 
 
 ```
   "devDependencies": {
@@ -34,7 +34,6 @@ Check the ```package.json``` file for the dependencies and the devDependencies. 
 }
 ```
 
-For deployment i used ```Netlify.``` But there are many more options you can choose from for deploying this app.
 
 ### Installing
 
