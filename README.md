@@ -1,6 +1,6 @@
-# Dating app - Project Tech
+# Project Tech - Sport Dating app
 
-This is a dating app created for sporty singles that don't have time to meet new people
+This is a dating app created for sporty singles that don't have time to meet new people.
 
 
 ## Getting Started
@@ -94,7 +94,7 @@ After that start your server
 https://<hostname>:<portname>
 ````
 
-And you'll see this is you are successfully connected
+And you'll see this is you are successfully connected to your localhost:
 
 **Start/Login page**
 
@@ -104,8 +104,15 @@ And you'll see this is you are successfully connected
 
 You can also go to the register page from the login page. You need to click the *register* link.
 
-
 ![9efb6dadc01ab3192221dee840038a78](https://user-images.githubusercontent.com/49676649/58912070-9083ce00-8719-11e9-8b0e-bea31c4489c7.png)
+
+**Database**
+
+If you don't have a account and you register and fill in your information, it will store in your database and it will look like this: 
+
+![2bce9f224d3993fdb6ab04508048919d](https://user-images.githubusercontent.com/49676649/58952754-e3e73200-8794-11e9-933d-c4bfc60984b4.png)
+
+![1d0295b320c2885ece1c941b2ae1714c](https://user-images.githubusercontent.com/49676649/58952895-39bbda00-8795-11e9-8e06-1dc6c62dd43e.png)
 
 Tada! There is your local website with a database.
 
@@ -113,7 +120,7 @@ Tada! There is your local website with a database.
 
 Install the dotenv package with ```npm install dotenv``` or with ```yarn add dotenv```. The dotenv package will make your project and database more secure so other people can't hack it. This is not required to do. So if you dont want to do this you can skip this.
 
-Put this is your ```.env```file and change it to the your host, port, MongoDB, dbURL and your secret session:
+Put this is your ```.env```file and change it to your host, port, MongoDB, dbURL and your secret session:
 
 ```
 DB_HOST= # Database host (probably localhost)
