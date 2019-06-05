@@ -63,7 +63,8 @@ Use the command git clone, then paste the link from your clipboard, or copy the 
 git clone https://github.com/OlafDs/Dating-app.git
 ```
 
-Navigate into the repository and install the dependencies
+Navigate into the repository and install the dependencies from the ```package.json```file. With the **command** below you install **all the packages.** But if you don't want to do that, check the ```package.json```file first and see what you want to download.
+
 
 ```
 npm install
@@ -97,7 +98,7 @@ And you'll see this is you are successfully connected
 
 ![3a8704b2cfdc5b769a472154bdb018f9](https://user-images.githubusercontent.com/49676649/58911866-1b17fd80-8719-11e9-86d6-edfd98ed5179.png)
 
-You can also go to the register page from the login page. You need to click the 'register' link.
+You can also go to the register page from the login page. You need to click the *register* link.
 
 ![9efb6dadc01ab3192221dee840038a78](https://user-images.githubusercontent.com/49676649/58912070-9083ce00-8719-11e9-8b0e-bea31c4489c7.png)
 
