@@ -100,9 +100,10 @@ And you'll see this is you are successfully connected
 
 ![3a8704b2cfdc5b769a472154bdb018f9](https://user-images.githubusercontent.com/49676649/58911866-1b17fd80-8719-11e9-86d6-edfd98ed5179.png)
 
+**Register page**
+
 You can also go to the register page from the login page. You need to click the *register* link.
 
-**Register page**
 
 ![9efb6dadc01ab3192221dee840038a78](https://user-images.githubusercontent.com/49676649/58912070-9083ce00-8719-11e9-8b0e-bea31c4489c7.png)
 
@@ -112,7 +113,7 @@ Tada! There is your local website with a database.
 
 Install the dotenv package with ```npm install dotenv``` or with ```yarn add dotenv```. The dotenv package will make your project and database more secure so other people can't hack it. This is not required to do. So if you dont want to do this you can skip this.
 
-Put this is your ```.env```file:
+Put this is your ```.env```file and change it to the your host, port, MongoDB, dbURL and your secret session:
 
 ```
 DB_HOST= # Database host (probably localhost)
