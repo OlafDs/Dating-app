@@ -38,7 +38,7 @@ Check the ```package.json``` file for the dependencies and the devDependencies f
   }
 }
 ```
-And these are the dependencies that i used in the ```package.json``` file. You don't need to use these. These packages are optinal:
+And these are the dependencies that i used in the ```package.json``` file. You don't need to use these. These packages are optinal to download, but it will help to write your code easier:
 
 ```
   "dependencies": {
@@ -91,7 +91,7 @@ git pull https://github.com/OlafDs/Dating-app.git master
 DB_HOST= # Database host (probably localhost)
 DB_PORT= # Port of database instance
 MONGO_DB= # The database you are using
-DB_URL= # 
+DB_URL= # URL to connect with your database <mongodb://<your hostname>/<your database name>>
 SESSION_SECRET= # Used for session secrets
 ```
 
@@ -99,6 +99,7 @@ SESSION_SECRET= # Used for session secrets
 
 ```
 npm start <server file> || nodemon <server file>
+CNTRL + C = Exit server run
 ```
 
 ### Stylsheets
@@ -116,10 +117,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Laurens Aarnoudse
 * Google
 * Stack Overflow
 * Github
 * Youtube
+* Laurens Aarnoudse
 * My classmates that helped me
 
