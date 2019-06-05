@@ -2,10 +2,6 @@
 
 This is a dating app created for sporty singles that don't have time to meet new people
 
-![3a8704b2cfdc5b769a472154bdb018f9](https://user-images.githubusercontent.com/49676649/58911866-1b17fd80-8719-11e9-86d6-edfd98ed5179.png)
-
-![9efb6dadc01ab3192221dee840038a78](https://user-images.githubusercontent.com/49676649/58912070-9083ce00-8719-11e9-8b0e-bea31c4489c7.png)
-
 
 ## Getting Started
 
@@ -84,6 +80,28 @@ And to ensure that the master-branch is up-to-date, use the pull command
 ```
 git pull https://github.com/OlafDs/Dating-app.git master
 ```
+
+In MongoDB create a server with a collection and change that in the server file to connect it with your MongoDB Database
+
+```
+var db = mongojs('NAME-OF-YOUR-DATABASE', ['NAME-OF-YOUR-COLLECTION']);
+```
+
+After that start your server
+
+```
+https://<hostname>:<portname>
+````
+
+And you'll see this is you are successfully connected
+
+![3a8704b2cfdc5b769a472154bdb018f9](https://user-images.githubusercontent.com/49676649/58911866-1b17fd80-8719-11e9-86d6-edfd98ed5179.png)
+
+You can also go to the register page from the login page. You need to click the 'register' link.
+
+![9efb6dadc01ab3192221dee840038a78](https://user-images.githubusercontent.com/49676649/58912070-9083ce00-8719-11e9-8b0e-bea31c4489c7.png)
+
+Tada! There is your local website with a database.
 
 ### Setting up .env
 
