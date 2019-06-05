@@ -141,7 +141,6 @@ nav a {
 }
 
 #index .gallery {
-    background: #EEE;
     overflow: hidden;
     margin: 0 auto;
     width: 30em;
@@ -171,31 +170,19 @@ nav a {
   border-radius: 0.5em 0.5em 0em 0em;
   }
 
-#index .slide:nth-child(1) {
-    background: #D93B65;
-    border: 1px solid #000;
-  }
-  
-  #index .slide:nth-child(2) {
-    background: #037E8C;
-    order: 1px solid #000;
-  }
-  
-  #index .slide:nth-child(3) {
-    background: #36BF66;
-    order: 1px solid #000;
-  }
-  
-  #index .slide:nth-child(4) {
-    background: #D9D055;
-    order: 1px solid #000;
-  }
   #index .slide ul {
     padding-left: 0;
     list-style-type: none;
 }
-  
-  
+
+#index .slide ul h3,
+#index .slide ul i,
+#index .slide ul b,
+#index .slide ul p {
+    margin-left: 11em;
+    margin-top: 1.2em;
+}
+
   @keyframes slide {
     20% {margin-left: 0px;}
     30% {margin-left: -730px;}
@@ -207,8 +194,19 @@ nav a {
   }
 
   #index button.like {
-    color: #26af32;
-    background: rgb(255, 255, 255);
+    color: #FFFFFF;
+    background: #26af32;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 0 1em 0 1em;
+}
+
+#index button.dislike {
+    color: #ca0a1e;
+    background: transparent;
+    border: 1px solid #ca0a1e;
+    border-radius: 5px;
+    padding: 0 1em 0 1em;
 }
 
 /************Code voor matches pagina**********/
@@ -514,7 +512,9 @@ nav a {
     font-size: 28px;
 }
 
-#register input[type="text"] {
+#register input[type="text"],
+#register input[type="email"],
+#register input[type="password"] {
     display: block;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -528,13 +528,15 @@ nav a {
     transition: 0.2s ease;
 }
 
-#register input[type="text"]:focus {
+#register input[type="text"]:focus
+#register input[type="email"]:focus,
+#register input[type="password"]:focus {
     border-bottom: 2px solid #16a085;
     color: #16a085;
     transition: 0.2s ease;
 }
 
-#register input[type="submit"] {
+#register button {
     margin-top: 28px;
     width: 120px;
     height: 32px;

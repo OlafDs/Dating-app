@@ -62,7 +62,7 @@ app.use(session({
 //https://medium.com/@nohkachi/local-authentication-with-express-4-x-and-passport-js-745eba47076d
 //Check for mongoose connection (just to be extra sure there is really a connection with the database)
 mongoose.connect(dbURL);
-var dbcon = mongoose.connection;
+const dbcon = mongoose.connection;
 //If the connection to the database can't be made
 dbcon.on('error', function (err) {
   console.error('There was a db connection error');

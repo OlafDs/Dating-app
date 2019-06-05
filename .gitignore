@@ -1,9 +1,4 @@
 .DS_Store
 node_modules/
 .env
-<<<<<<< HEAD
 db/
-=======
-datingapp-nodejs/
-db/
->>>>>>> b010cc32f6c82446bdc326b194a760696c7298d2

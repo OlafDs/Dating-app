@@ -53,7 +53,7 @@ const userSchema = new Schema({
 });
 
 // Credits: https://www.youtube.com/watch?v=Peww_cdgka4
-// Using Bcryptjs to hash password  that the user typed in
+// Using Bcryptjs to hash password  that the user typed in (Doesn't work yet)
 userSchema.pre('save', async function (next) {
   try {
     //Generates salt
