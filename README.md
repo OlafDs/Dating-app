@@ -108,7 +108,7 @@ You can also go to the register page from the login page. You need to click the 
 
 **Database**
 
-If you don't have a account and you register and fill in your information, it will store in your database and it will look like this: 
+If you don't have a account and you register and fill in your information, the data you filled in will store in your database in MongoDB and it will look like this: 
 
 ![2bce9f224d3993fdb6ab04508048919d](https://user-images.githubusercontent.com/49676649/58952754-e3e73200-8794-11e9-933d-c4bfc60984b4.png)
 
