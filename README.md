@@ -63,7 +63,7 @@ Use the command git clone, then paste the link from your clipboard, or copy the 
 git clone https://github.com/OlafDs/Dating-app.git
 ```
 
-Navigate into the repository and install the dependencies from the ```package.json```file. With the **command** below you install **all the packages.** But if you don't want to do that, check the ```package.json```file first and see what you want to download.
+Navigate into the repository and install the dependencies from the ```package.json```file. With the **command** below you install **all the packages.** But if you don't want to do that, check the ```package.json```file first and see what you want to download and what not.
 
 
 ```
