@@ -87,6 +87,10 @@ git pull https://github.com/OlafDs/Dating-app.git master
 
 ### Setting up .env
 
+Install the dotenv package with ```npm install dotenv``` or with ```yarn add dotenv```. The dotenv package will make your project and database more secure so other people can't hack it. This is not required to do. So if you dont want to do this you can skip this.
+
+Put this is your ```.env```file:
+
 ```
 DB_HOST= # Database host (probably localhost)
 DB_PORT= # Port of database instance
