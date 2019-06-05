@@ -29,7 +29,7 @@ For the code editor i used Visual Studio Code, but that's my preference.
 
 ### package.json
 
-Check the ```package.json``` file for the dependencies and the devDependencies for downloading NPM packages. I'll show the devDenpendencies here: 
+Check the ```package.json``` file for the dependencies and the devDependencies for downloading NPM packages. I'll show the devDenpendencies here. You need to have this installed: 
 
 ```
   "devDependencies": {
@@ -38,7 +38,22 @@ Check the ```package.json``` file for the dependencies and the devDependencies f
   }
 }
 ```
+And these are the dependencies that i used in the ```package.json``` file. You don't need to use these. These packages are optinal:
 
+```
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.1",
+    "express-session": "^1.16.1",
+    "mongojs": "^2.6.0",
+    "mongoose": "^5.5.11",
+    "multer": "^1.4.1",
+    "slug": "^1.1.0",
+    "validator": "^11.0.0"
+  }
+```
 
 ### Installing
 
