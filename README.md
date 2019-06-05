@@ -112,6 +112,10 @@ If you don't have a account and you register and fill in your information, it wi
 
 ![2bce9f224d3993fdb6ab04508048919d](https://user-images.githubusercontent.com/49676649/58952754-e3e73200-8794-11e9-933d-c4bfc60984b4.png)
 
+**User Schema**
+
+It will show like that because of th **User Schema**. This can be done inside the utilities/userlogin.js file. Read up on the [mongoDB docs](https://docs.mongodb.com/) on how to do that. 
+
 ![1d0295b320c2885ece1c941b2ae1714c](https://user-images.githubusercontent.com/49676649/58952895-39bbda00-8795-11e9-8e06-1dc6c62dd43e.png)
 
 Tada! There is your local website with a database.
