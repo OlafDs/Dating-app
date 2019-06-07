@@ -162,6 +162,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Stack Overflow
 * Github
 * Youtube
-* Laurens Aarnoudse
+* https://github.com/razpudding
 * My classmates that helped me
 
