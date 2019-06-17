@@ -1,4 +1,4 @@
-/** Some of this code are the same from my Project WEB websitecd **/
+/** Some of this code are the same from my Project WEB website **/
 * {
     font-family: Segoe UI;
     font-weight: normal;
@@ -123,8 +123,15 @@ nav a {
 
 .notificationactive {
     opacity: 1;
-	top: -2px;
+    top: -2px;
 }
+
+.notificationgone {
+    opacity: 0;
+    top: -32px;
+   
+}
+
 
 
 /***desktop formaat****/
@@ -146,21 +153,23 @@ nav a {
     width: 30em;
 }
 
-#index .slide-wrapper {
+  #index .carousel-slider{
     width: 2912px;
-    animation: slide 18s ease infinite;
-  }
+    animation: slide 30s ease infinite;
+    position: relative;
+    padding: 0;
 
+  }
 
 /**https://codepen.io/daysahead/pen/mJqBge for the help**/
+
 #index .slide {
-    float: left;
-    height: 510px;
-    width: 728px;
-    box-shadow: 0 2px 0 0 rgba(7, 7, 33, .15);
     display: inline-block;
+    height: 510px;
+    width: 700px;
+    transition: all 0.5s ease-in-out;
   }
-  #index .slide ul img {
+  #index .slide img {
   object-fit: cover;
   height: 16.4em;
   width: 100%;
@@ -183,17 +192,23 @@ nav a {
     margin-top: 1.2em;
 }
 
+
   @keyframes slide {
     20% {margin-left: 0px;}
-    30% {margin-left: -730px;}
-    50% {margin-left: -730px;}
-    60% {margin-left: -1460px;}
-    70% {margin-left: -1460px;}
-    80% {margin-left: -2185px;}
-    90% {margin-left: -2185px;}
+    30% {margin-left: -700px;}
+    50% {margin-left: -700px;}
+    60% {margin-left: -1409px;}
+    70% {margin-left: -1409px;}
+    80% {margin-left: -2110px;}
+    90% {margin-left: -2110px;}
   }
 
-  #index button.like {
+  #index .controls {
+    text-align: center;
+}
+
+
+  #index .like {
     color: #FFFFFF;
     background: #26af32;
     border: 1px solid #000;
@@ -201,7 +216,8 @@ nav a {
     padding: 0 1em 0 1em;
 }
 
-#index button.dislike {
+
+#index .dislike {
     color: #ca0a1e;
     background: transparent;
     border: 1px solid #ca0a1e;

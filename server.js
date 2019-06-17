@@ -18,7 +18,9 @@ const mongoose = require('mongoose');
 const port = process.env.DB_PORT;
 const db = mongojs(process.env.MONGO_DB, ['users']);
 const host = process.env.HOST;
-const dbURL = process.env.DB_URL;
+const dbURL = process.env.MONGODB_URI;
+const bcrypt = require('bcryptjs');
+
 
 const User = require('./utilities/userlogin');
 
@@ -61,7 +63,9 @@ app.use(session({
 
 //https://medium.com/@nohkachi/local-authentication-with-express-4-x-and-passport-js-745eba47076d
 //Check for mongoose connection (just to be extra sure there is really a connection with the database)
-mongoose.connect(dbURL);
+mongoose.createConnection(dbURL, {
+  useNewUrlParser: true
+});
 const dbcon = mongoose.connection;
 //If the connection to the database can't be made
 dbcon.on('error', function (err) {
@@ -74,8 +78,8 @@ dbcon.once('connected', function () {
 });
 
 app.get('/', login),
-app.get('/login', login),
-app.get('/register', register);
+  app.get('/login', login),
+  app.get('/register', register);
 app.get('/logout', logout);
 
 //Gets the given port in the .env file
@@ -92,23 +96,28 @@ app.post('/', function (req, res) {
 
 //https://www.youtube.com/watch?v=CrAU8xTHy4M&t=718s
 app.post('/users/add', function (req, res) {
-   
- //  object destructuring  const newUser = { first_name, last_name, age, description, sport, email, password } + reg.body;
-  const newUser = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    age: req.body.age,
-    description: req.body.description,
-    sport: req.body.sport,
-    email: req.body.email,
-    password: req.body.password
-  };
 
-  console.log('Registeren is gelukt');
-  res.redirect('../profile');
-  db.users.insert(newUser);
+  bcrypt.hash(req.body.password, 10, function (err, hash) {
+    if (err) {
+      throw err;
+    }
+
+    //  object destructuring  const newUser = { first_name, last_name, age, description, sport, email, password } + reg.body;
+    const newUser = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      age: req.body.age,
+      description: req.body.description,
+      sport: req.body.sport,
+      email: req.body.email,
+      password: hash
+    };
+
+    console.log('Registeren is gelukt');
+    res.redirect('../profile');
+    db.users.insert(newUser);
+  });
 });
-
 //----DELETE USER ACCOUNT FUNCTION----//
 
 app.get('/users/delete', function (req, res) {
@@ -117,7 +126,7 @@ app.get('/users/delete', function (req, res) {
   db.users.remove({
     _id: id
   }, (err) => {
-  //If user can't be deleted, show status 500 - Internal server error. Prevented from fulfilling the request
+    //If user can't be deleted, show status 500 - Internal server error. Prevented from fulfilling the request
     if (err) {
       console.log(err)
       res.status(500).send()
@@ -145,21 +154,21 @@ app.post('/users/login', function (req, res, next) {
     password: password
   };
 
-      User.findOne(query, function (err, user) {
-        if (err) {
-          console.log(err);
-          console.log('Error');
-          return res.redirect('/login');
-        }
-        if (!user) {
-          console.log('Inloggen mislukt');
-          return res.redirect('/login');
-        }
-          req.session.user = user;
-          console.log('Inloggen gelukt');
-          return res.status(200).send, res.redirect('/index');
-      });
-    });
+  db.users.findOne(query, function (err, user) {
+    if (err) {
+      console.log(err);
+      console.log('Error');
+      return res.redirect('/login');
+    }
+    if (!user) {
+      console.log('Inloggen mislukt');
+      return res.redirect('/login');
+    }
+    req.session.user = user;
+    console.log('Inloggen gelukt');
+    return res.status(200).send, res.redirect('/index');
+  });
+});
 
 //--------------------PAGES--------------------------//
 
@@ -225,7 +234,7 @@ app.get('/index', function (req, res) {
 //----MATCHES PAGE - SEE YOUR MATCHES----//
 
 app.get('/matches', function (req, res) {
-   //Checks If user is logged in or not. If user is not logged in, redirect the user to the login page
+  //Checks If user is logged in or not. If user is not logged in, redirect the user to the login page
   if (!req.session.user) {
     return res.redirect('login'), res.status(401).send();
   }
