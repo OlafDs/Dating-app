@@ -22,7 +22,7 @@ nav {
 
 nav img {
     margin-left: 2.5em;
-    margin-top: 1.2em;
+    width: 12em;
 }
 
 nav a {
@@ -137,6 +137,9 @@ nav a {
 /***desktop formaat****/
 
 /***Home pagina***/
+#index header {
+    height: 5em;
+}
 /** Sectie 1 **/
 #index h1 {
     padding: 2rem;
@@ -147,42 +150,52 @@ nav a {
     font-weight: 700;
 }
 
-#index .gallery {
-    overflow: hidden;
+#index .carousel-wrapper {
     margin: 0 auto;
     width: 30em;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-  #index .carousel-slider{
-    width: 2912px;
-    animation: slide 30s ease infinite;
-    position: relative;
-    padding: 0;
+/* Credits: https://css-tricks.com/introducing-css-scroll-snap-points/ */
 
+  #index #slider{
+    width: 100%;
+    height: 30em;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    list-style-type: none;
   }
 
-/**https://codepen.io/daysahead/pen/mJqBge for the help**/
 
 #index .slide {
+    scroll-snap-align: start;
     display: inline-block;
-    height: 510px;
-    width: 700px;
+    height: 400px;
     transition: all 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
   }
+
+
   #index .slide img {
   object-fit: cover;
   height: 16.4em;
   width: 100%;
-  margin: 0 0-4px 0;
+  margin: 0 0 -4px 0;
   padding: 0;
   position: relative;
   border-radius: 0.5em 0.5em 0em 0em;
   }
 
-  #index .slide ul {
-    padding-left: 0;
-    list-style-type: none;
-}
 
 #index .slide ul h3,
 #index .slide ul i,
@@ -192,16 +205,6 @@ nav a {
     margin-top: 1.2em;
 }
 
-
-  @keyframes slide {
-    20% {margin-left: 0px;}
-    30% {margin-left: -700px;}
-    50% {margin-left: -700px;}
-    60% {margin-left: -1409px;}
-    70% {margin-left: -1409px;}
-    80% {margin-left: -2110px;}
-    90% {margin-left: -2110px;}
-  }
 
   #index .controls {
     text-align: center;

@@ -2,7 +2,11 @@
 var notification = document.querySelector('.notification');
 var like = document.getElementById("likeButton");
 var dislike = document.getElementById("dislikeButton");
+var h1 = document.getElementsByTagName('h1')[0];
 var div = document.querySelector('.slide');
+var controls = document.querySelector(".controls");
+
+h1.innerHTML = "Begin met swipen en match met mensen";
 
 
 //If class 'notificationactive' is toggled, reveal the class
@@ -37,7 +41,9 @@ like.onclick = function () {
 
 };
 
+
 //Adds an event to the dislike button. What kind of action does it have
 dislike.addEventListener('click', unreveal);
 //Adds an event to the like button. What kind of action does it have
 like.addEventListener('click', reveal);
+

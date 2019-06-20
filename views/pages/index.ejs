@@ -6,8 +6,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
@@ -19,52 +18,59 @@
 
 
    <main>
-      <section>
-         <h1>Begin met swipen en match met mensen</h1>
-         <div class="gallery">
-            <div class="carousel-slider">
-               <div class="slider">
-                  <div class="slide item-1">
+      <h1 class="title">Match met mensen</h1>
+      <section class="carousel-wrapper">
+         <div id="next">
+            <ul id="slider">
+               <li class="slide">
+                  <article>
                      <img src="upload/woman.jpg" alt="profiel foto">
                      <h3>Sylvia, 21</h3>
                      <i>Doet aan de sport:</i>
                      <b>Hardlopen</b>
                      <p>Ik doe aan hardlopen</p>
-                  </div>
-                  <div class="slide item-2">
+                  </article>
+               </li>
+               <li class="slide">
+                  <article>
                      <img src="upload/Man.jpg" alt="profiel foto">
                      <h3>Willem, 24</h3>
                      <i>Doet aan de sport:</i>
                      <b>Wielrennen</b>
                      <p>Lekker fietsen. Goed voor de benen</p>
-                  </div>
-                  <div class="slide item-3">
+                  </article>
+               </li>
+               <li class="slide">
+                  <article>
                      <img src="upload/Woman2.jpg" alt="profiel foto">
                      <h3>Tessa, 19</h3>
                      <i>Doet aan de sport:</i>
                      <b>Waterpolo</b>
                      <p>Bij waterpolo gaat het er hard aan toe</p>
-                  </div>
-                  <div class="slide item-4">
+                  </article>
+               </li>
+               <li class="slide">
+                  <article>
                      <img src="upload/Man2.jpg" alt="profiel foto">
                      <h3>Jan, 22</h3>
                      <i>Doet aan de sport:</i>
                      <b>Voetbal</b>
                      <p>Ik ben een soort semi-amateur prof in voetbal</p>
-                  </div>
-               </div>
-            </div>
+                  </article>
+               </li>
+            </ul>
             <div class="controls">
-                  <button class="dislike" id="dislikeButton">Dislike</button>
-                  <button class="like" id="likeButton">Like</button>
-               </div>
+               <button class="dislike" id="dislikeButton">Dislike</button>
+               <button class="like" id="likeButton">Like</button>
+            </div>
          </div>
       </section>
    </main>
    <footer>
       <p>© 2019 Online Sport Dating</p>
+      <script src="/javascripts/scripts.js"></script>
+      <script src="/javascripts/carousel.js"></script>
    </footer>
-   <script src="/javascripts/scripts.js"></script>
 </body>
 
 </html>
