@@ -53,6 +53,15 @@ And these are the dependencies that i used in the ```package.json``` file. You d
   }
 ```
 
+## Built With
+
+* [Express](https://expressjs.com/) - Minimalist web framework for Node.js
+* [Express-session](https://www.npmjs.com/package/express-session) - Create a sessions
+* [Nodemon](https://nodemon.io/) - Restart automatically your server
+* [EJS](https://ejs.co/) - Template Engine
+* [MongoDB](https://mongodb.com/) - Nosql DB
+* [Eslint](https://eslint.org/) - Linting utility for JavaScript
+
 ### Installing
 
 How to install this project:
