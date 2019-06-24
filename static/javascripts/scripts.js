@@ -1,12 +1,13 @@
-/*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
-var notification = document.querySelector('.notification');
-var like = document.getElementById("likeButton");
-var dislike = document.getElementById("dislikeButton");
-var h1 = document.getElementsByTagName('h1')[0];
-var div = document.querySelector('.slide');
-var controls = document.querySelector(".controls");
+//These are some extra's for the progressive enhancement, but not necessary
 
-h1.innerHTML = "Begin met swipen en match met mensen";
+var notification = document.querySelector('.notification');
+var like = document.getElementById('likeButton');
+var dislike = document.getElementById('dislikeButton');
+var h1 = document.getElementsByTagName('h1')[0];
+
+
+//If Javascript is enabled, change what is between the h1 to this
+h1.innerHTML = 'Begin met swipen en match met mensen';
 
 
 //If class 'notificationactive' is toggled, reveal the class
@@ -23,22 +24,6 @@ var unreveal = function () {
     setTimeout(function () {
         notification.classList.toggle('notificationgone');
     }, 300);
-};
-
-//If the dislike button is clicked, The text will be red after 300ms
-dislike.onclick = function () {
-    setTimeout(function () {
-        div.style.color = "red";
-    }, 300);
-
-};
-
-//If the like button is clicked, The text will be green after 300ms
-like.onclick = function () {
-    setTimeout(function () {
-        div.style.color = "green";
-    }, 300);
-
 };
 
 

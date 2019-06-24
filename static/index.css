@@ -22,15 +22,14 @@ nav {
 
 nav img {
     margin-left: 2.5em;
-    width: 12em;
+    width: 6em;
 }
 
 nav a {
     color: #0079D3;
     text-decoration: none;
-    padding-left: 0.9em;
     transition: 0.4s ease;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 
@@ -40,12 +39,12 @@ nav ul {
     flex-wrap: wrap;
     list-style-type: none;
     margin: 0 auto;
-    padding-top: 1em;
+    padding-top: 2em;
     padding-left: 12em;
 }
 
 nav ul li {
-    margin-left: 2rem;
+    margin-left: 0rem;
     margin-right: 2rem;
     align-content: space-between;
     border-bottom: 2px solid transparent;
@@ -99,19 +98,11 @@ nav ul li:nth-of-type(4):before {
     transition: 400ms ease;
 }
 
-
-nav a {
-    color: #0079D3;
-    text-decoration: none;
-    transition: 0.4s ease;
-    font-size: 1em;
-}
-
 /** CSS voor de JS notification**/
 .notification {
     position: absolute;
     top: -32px;
-    right: -27px;
+    right: -18px;
     padding: 2px 2px;
     border-radius: 50%;
     background-color: red;
@@ -143,7 +134,7 @@ nav a {
 /** Sectie 1 **/
 #index h1 {
     padding: 2rem;
-    width: 50%;
+    width: 80%;
     color: #73cbf3;
     margin: 0 auto;
     text-align: center;
@@ -160,7 +151,8 @@ nav a {
 
 /* Credits: https://css-tricks.com/introducing-css-scroll-snap-points/ */
 
-  #index #slider{
+  #index #slider
+  {
     width: 100%;
     height: 30em;
     margin: 0;
@@ -168,8 +160,10 @@ nav a {
     white-space: nowrap;
     overflow-y: hidden;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: mandatory;
+    -webkit-overflow-scrolling: touch; /* For on the mobile you can now drag and swipe*/
+    scroll-snap-type: mandatory; 
+    /* Credits: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type Property sets how strictly snap points are enforced on the scroll container in case there is one.
+     If content is added, moved, deleted or resized the scroll offset will be adjusted to maintain the resting on that snap point.*/
     scroll-behavior: smooth;
     position: relative;
     list-style-type: none;
@@ -177,6 +171,9 @@ nav a {
 
 
 #index .slide {
+    /* Credits: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align This property specifies the box’s snap position as an alignment of its snap area
+     (as the alignment subject) within its snap container’s snapport (as the alignment container).
+     The start alignment of this box's scroll snap area, within the scroll container's snapport is a snap position in this axis.*/
     scroll-snap-align: start;
     display: inline-block;
     height: 400px;
@@ -206,7 +203,7 @@ nav a {
 }
 
 
-  #index .controls {
+  #index #controls {
     text-align: center;
 }
 
